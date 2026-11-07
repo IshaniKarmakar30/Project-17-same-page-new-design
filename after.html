@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TECHNOVA 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-hover-border: rgba(99, 102, 241, 0.4);
+      --accent: #6366f1;
+      --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --badge-bg: rgba(99, 102, 241, 0.15);
+      --badge-text: #c7d2fe;
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+      padding: 0 1.25rem;
+    }
+
+    /* Ambient Glow */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(9, 13, 22, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    header {
+      padding: 5rem 1rem 3.5rem;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      font-weight: 400;
+    }
+
+    button {
+      background: var(--accent-gradient);
+      color: #ffffff;
+      border: none;
+      padding: 0.95rem 2.25rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+      transition: all 0.25s ease;
+      letter-spacing: 0.01em;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -6px rgba(99, 102, 241, 0.55);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .events {
+      padding: 2.5rem 0 4rem;
+    }
+
+    .events h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+      text-align: center;
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .event-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .event-card h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: #ffffff;
+    }
+
+    .event-card p:first-of-type {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .event-card p:last-of-type {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      border: 1px solid rgba(99, 102, 241, 0.25);
+    }
+
+    footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 2.5rem 1rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 3.5rem 0.5rem 2.5rem;
+      }
+      .event-grid {
+        grid-template-columns: 1fr;
+      }
+      .event-card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>TECHNOVA 2026</h1>
+      <p>Three days of robotics, code and music.</p>
+      <button>Register now</button>
+    </header>
+
+    <section class="events">
+      <h2>Featured Events</h2>
+      
+      <div class="event-grid">
+        <div class="event-card">
+          <h3>Robotics Challenge</h3>
+          <p>Build line followers and combat bots to compete on dynamic obstacle arenas.</p>
+          <p>Prize pool: &#8377;25,000</p>
+        </div>
+
+        <div class="event-card">
+          <h3>24-Hour Hackathon</h3>
+          <p>Solve real-world civic and software problems with cutting-edge web & AI tools.</p>
+          <p>Prize pool: &#8377;40,000</p>
+        </div>
+
+        <div class="event-card">
+          <h3>Music Night</h3>
+          <p>Live performances by independent fusion bands and college rock artists under the stars.</p>
+          <p>Entry: Free with registration pass</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 TECHNOVA Annual Tech Fest. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
